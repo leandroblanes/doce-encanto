@@ -4,6 +4,7 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import HomeScreen from './src/screens/Home/HomeScreen';
 import CategoryScreen from './src/screens/Category/CategoryScreen';
+import ProductScreen from './src/screens/Product/ProductScreen';
 
 import cores from './src/util/cores';
 
@@ -45,6 +46,11 @@ export default function App() {
           <Stack.Screen
             name="Category"
             component={CategoryScreen}
+            options={headerOptions}
+          />
+          <Stack.Screen
+            name="Product"
+            component={ProductScreen}
             options={headerOptions}
           />
         </Stack.Navigator>

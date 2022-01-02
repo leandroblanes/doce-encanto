@@ -18,7 +18,7 @@ function CategoryScreen({ route, navigation }) {
     return (
         <BaseScreen>
             <Title text={category.name} />
-            <ProductList productList={productList} />
+            <ProductList productList={productList} navigation={navigation} />
         </BaseScreen>
     )
 }

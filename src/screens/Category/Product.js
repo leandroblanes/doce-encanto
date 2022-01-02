@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native"
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from "react-native"
 import Currency from "../../components/Currency";
 
 const styles = StyleSheet.create({
@@ -21,15 +21,23 @@ const styles = StyleSheet.create({
 });
 
 function Product({ product, navigation }) {
+    const navigate = () => {
+        navigation.navigate('Product', {
+            product
+        })
+    }
+
     return (
-        <View style={styles.item}>
-            <View style={styles.description}>
-                <Text>{product.name}</Text>
+        <TouchableWithoutFeedback onPress={navigate}>
+            <View style={styles.item}>
+                <View style={styles.description}>
+                    <Text>{product.name}</Text>
+                </View>
+                <View style={styles.price}>
+                    <Currency style={{ textAlign: "right" }} value={product.price} />
+                </View>
             </View>
-            <View style={styles.price}>
-                <Currency textAlign="right" value={product.price} />
-            </View>
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 

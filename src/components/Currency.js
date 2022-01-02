@@ -1,13 +1,11 @@
 import { Text } from "react-native"
 
-function Currency({ value, textAlign = "left" }) {
+function Currency({ value, style }) {
     if (value == null || value == undefined)
         value = 0
 
     return (
-        <Text style={{
-            textAlign
-        }}>
+        <Text style={style}>
             R$ {value.toLocaleString('pt-BR', {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2

@@ -1,5 +1,6 @@
 const cores = {
     marrom: '#9a684d',
+    marromClaro: '#d4c6c1',
     rosa: '#ff8d82'
 }
 
