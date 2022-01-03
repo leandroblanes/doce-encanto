@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     description: {
-        flex: 1
+        flex: 1,
+        paddingRight: 10
     },
     price: {
         width: 100,

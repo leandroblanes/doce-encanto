@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import FloatingCart from '../../components/FloatingCart';
 import Title from '../../components/Title';
 
 import productService from '../../services/productService';

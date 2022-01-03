@@ -5,8 +5,10 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import HomeScreen from './src/screens/Home/HomeScreen';
 import CategoryScreen from './src/screens/Category/CategoryScreen';
 import ProductScreen from './src/screens/Product/ProductScreen';
+import CartScreen from './src/screens/Cart/CartScreen';
 
 import cores from './src/util/cores';
+import HeaderCartButton from './src/components/HeaderCartButton';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +17,7 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: cores.marrom,
-    accent: 'yellow',
+    accent: cores.rosa,
   }
 }
 
@@ -28,7 +30,8 @@ const headerOptions = {
   headerTitleAlign: 'center',
   headerTitleStyle: {
     fontWeight: 'bold',
-  }
+  },
+  headerRight: () => <HeaderCartButton />
 }
 
 export default function App() {
@@ -51,6 +54,11 @@ export default function App() {
           <Stack.Screen
             name="Product"
             component={ProductScreen}
+            options={headerOptions}
+          />
+          <Stack.Screen
+            name="Cart"
+            component={CartScreen}
             options={headerOptions}
           />
         </Stack.Navigator>

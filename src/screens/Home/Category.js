@@ -11,11 +11,13 @@ const styles = StyleSheet.create({
 });
 
 function Category({ category, navigation }) {
+
     const image = {
         uri: category.image
     }
 
     const navigate = () => {
+
         navigation.navigate('Category', {
             category
         })

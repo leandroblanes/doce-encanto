@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native'
-import cores from '../../util/cores'
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import cores from '../util/cores'
 
 const styles = StyleSheet.create({
     container: {
@@ -58,19 +58,19 @@ function Quantity({ onChange, quantity: initialQuantity }) {
 
     return (
         <View style={styles.container}>
-            <TouchableNativeFeedback onPress={minus}>
+            <TouchableWithoutFeedback onPress={minus}>
                 <View style={styles.minusButton}>
                     <Text style={styles.buttonText}>-</Text>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
             <View style={styles.quantity}>
                 <Text>{quantity}</Text>
             </View>
-            <TouchableNativeFeedback onPress={plus}>
+            <TouchableWithoutFeedback onPress={plus}>
                 <View style={styles.plusButton}>
                     <Text style={styles.buttonText}>+</Text>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
         </View>
     )
 }

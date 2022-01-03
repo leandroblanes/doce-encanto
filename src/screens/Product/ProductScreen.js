@@ -5,7 +5,10 @@ import Currency from '../../components/Currency';
 import cores from '../../util/cores';
 
 import BaseScreen from '../BaseScreen';
-import QuantitySelector from './QuantitySelector';
+import QuantitySelector from '../../components/QuantitySelector';
+import FloatingCart from '../../components/FloatingCart';
+
+import cartService from '../../services/cartService';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,6 +38,11 @@ function ProductScreen({ route, navigation }) {
     const { product } = route.params
     const [quantity, setQuantity] = useState(1)
 
+    const addToCart = () => {
+        cartService.add(product, quantity)
+        navigation.navigate('Cart')
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
@@ -50,7 +58,7 @@ function ProductScreen({ route, navigation }) {
             </ScrollView>
             <View style={styles.buttonContainer}>
                 <QuantitySelector quantity={quantity} onChange={setQuantity} />
-                <Button mode="contained" onPress={() => alert('oi')}>
+                <Button mode="contained" onPress={addToCart}>
                     Adicionar <Currency value={product.price * quantity} />
                 </Button>
             </View>
