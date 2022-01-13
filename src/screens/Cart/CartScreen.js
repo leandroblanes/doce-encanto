@@ -3,7 +3,8 @@ import BaseScreen from "../BaseScreen";
 import Title from "../../components/Title";
 
 import cartService from "../../services/cartService";
-import eventService, { CART_UPDATED } from "../../services/eventService";
+import eventService, { CART_UPDATED, LOGIN } from "../../services/eventService";
+import sessionService from "../../services/sessionService";
 
 import ItemList from "./ItemList";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
@@ -35,15 +36,21 @@ const styles = StyleSheet.create({
 function CartScreen({ navigation }) {
     const [itemList, setItemList] = useState([...cartService.items])
     const [totalPrice, setTotalPrice] = useState(cartService.totalPrice)
+    const [logged, setLogged] = useState(sessionService.logged)
 
     useEffect(() => {
-        const subscriberId = eventService.subscribe(CART_UPDATED, () => {
+        const cartUpdatedId = eventService.subscribe(CART_UPDATED, () => {
             setItemList([...cartService.items])
             setTotalPrice(cartService.totalPrice)
         })
 
+        const loginId = eventService.subscribe(LOGIN, () => {
+            setLogged(sessionService.logged)
+        })
+
         return () => {
-            eventService.unsubuscribe(subscriberId)
+            eventService.unsubuscribe(cartUpdatedId)
+            eventService.unsubuscribe(loginId)
         }
     }, [])
 
@@ -65,7 +72,7 @@ function CartScreen({ navigation }) {
                 <Button
                     style={styles.button}
                     mode="contained"
-                    onPress={() => navigation.navigate('Login')}
+                    onPress={() => navigation.navigate(!logged ? 'Login' : 'Pagamento')}
                 >
                     Finalizar compra
                 </Button>

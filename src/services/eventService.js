@@ -6,7 +6,6 @@ class EventService {
 
     subscribe(eventName, callbackFn) {
         const newId = ++this.actualSubscriberId
-        console.log(`Assinou com id ${newId} - Assinantes: ${this.subscribers.length}`)
         this.subscribers.push({
             id: newId,
             eventName,
@@ -17,7 +16,6 @@ class EventService {
 
     unsubuscribe(subscriberId) {
         this.subscribers = this.subscribers.filter(el => el.id != subscriberId)
-        console.log(`Saiu id ${subscriberId}`)
     }
 
     notify(eventName) {
@@ -30,3 +28,5 @@ const eventService = new EventService()
 export default eventService
 
 export const CART_UPDATED = 'cart_updated'
+export const LOGIN = 'login'
+export const LOGOUT = 'logout'

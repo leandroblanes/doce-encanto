@@ -7,6 +7,8 @@ import CategoryScreen from './src/screens/Category/CategoryScreen';
 import ProductScreen from './src/screens/Product/ProductScreen';
 import CartScreen from './src/screens/Cart/CartScreen';
 import LoginScreen from './src/screens/Login/LoginScreen';
+import RegisterScreen from './src/screens/Register/RegisterScreen';
+import PaymentScreen from './src/screens/Payment/PaymentScreen';
 
 import cores from './src/util/cores';
 import HeaderCartButton from './src/components/HeaderCartButton';
@@ -67,8 +69,18 @@ export default function App() {
             component={LoginScreen}
             options={headerOptions}
           />
+          <Stack.Screen
+            name="Cadastro"
+            component={RegisterScreen}
+            options={headerOptions}
+          />
+          <Stack.Screen
+            name="Pagamento"
+            component={PaymentScreen}
+            options={headerOptions}
+          />
         </Stack.Navigator>
       </NavigationContainer>
-    </PaperProvider>
+    </PaperProvider >
   );
 }
