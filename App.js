@@ -6,6 +6,7 @@ import HomeScreen from './src/screens/Home/HomeScreen';
 import CategoryScreen from './src/screens/Category/CategoryScreen';
 import ProductScreen from './src/screens/Product/ProductScreen';
 import CartScreen from './src/screens/Cart/CartScreen';
+import LoginScreen from './src/screens/Login/LoginScreen';
 
 import cores from './src/util/cores';
 import HeaderCartButton from './src/components/HeaderCartButton';
@@ -59,6 +60,11 @@ export default function App() {
           <Stack.Screen
             name="Cart"
             component={CartScreen}
+            options={headerOptions}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
             options={headerOptions}
           />
         </Stack.Navigator>

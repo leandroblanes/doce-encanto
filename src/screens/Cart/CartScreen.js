@@ -65,7 +65,7 @@ function CartScreen({ navigation }) {
                 <Button
                     style={styles.button}
                     mode="contained"
-                    onPress={() => alert('Funcionalidade ainda não implementada')}
+                    onPress={() => navigation.navigate('Login')}
                 >
                     Finalizar compra
                 </Button>
