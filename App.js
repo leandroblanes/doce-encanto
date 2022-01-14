@@ -9,6 +9,7 @@ import CartScreen from './src/screens/Cart/CartScreen';
 import LoginScreen from './src/screens/Login/LoginScreen';
 import RegisterScreen from './src/screens/Register/RegisterScreen';
 import PaymentScreen from './src/screens/Payment/PaymentScreen';
+import OrderScreen from './src/screens/Order/OrderScreen';
 
 import cores from './src/util/cores';
 import HeaderCartButton from './src/components/HeaderCartButton';
@@ -77,6 +78,11 @@ export default function App() {
           <Stack.Screen
             name="Pagamento"
             component={PaymentScreen}
+            options={headerOptions}
+          />
+          <Stack.Screen
+            name="Resumo"
+            component={OrderScreen}
             options={headerOptions}
           />
         </Stack.Navigator>

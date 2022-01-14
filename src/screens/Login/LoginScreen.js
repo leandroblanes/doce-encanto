@@ -1,7 +1,7 @@
 import BaseScreen from "../BaseScreen";
 import Title from "../../components/Title";
 import { StyleSheet, Text, View, ScrollView, TextInput as OriginalTextInput } from "react-native";
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Snackbar } from 'react-native-paper';
 import sessionService from "../../services/sessionService";
 import { useEffect, useState } from "react";
 
@@ -24,7 +24,11 @@ const styles = StyleSheet.create({
 })
 
 function LoginScreen({ navigation }) {
-    const [data, setData] = useState({})
+    const [data, setData] = useState({
+        email: 'lblanes@gmail.com',
+        password: '1234'
+    })
+    const [msg, setMsg] = useState(null)
 
     useEffect(() => {
 
@@ -37,8 +41,17 @@ function LoginScreen({ navigation }) {
         })
     }
 
-    const login = () => {
+    const login = async () => {
+        if (!data.email || !data.password) {
+            setMsg('Informe o e-mail e a senha para entrar')
+            return
+        }
 
+        if (await sessionService.login(data.email, data.password)) {
+            navigation.navigate('Pagamento')
+        } else {
+            setMsg('Dados de acesso inválidos')
+        }
     }
 
     const register = () => {
@@ -47,6 +60,13 @@ function LoginScreen({ navigation }) {
 
     return (
         <BaseScreen>
+            <Snackbar
+                visible={msg != null}
+                onDismiss={() => setMsg(null)}
+                duration={3000}
+            >
+                {msg}
+            </Snackbar>
             <Title text="Identifique-se" />
             <TextInput
                 label="Email"
@@ -57,7 +77,7 @@ function LoginScreen({ navigation }) {
             <TextInput
                 label="Senha"
                 render={props =>
-                    <OriginalTextInput secureTextEntry={true} {...props} />
+                    <OriginalTextInput keyboardType="number-pad" secureTextEntry={true} {...props} />
                 }
                 value={data.password}
                 onChangeText={text => handleChange('password', text)}

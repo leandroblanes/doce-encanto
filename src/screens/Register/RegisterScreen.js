@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 })
 
 function RegisterScreen({ navigation }) {
-    console.log(navigation)
     const [data, setData] = useState({
         email: 'lblanes@gmail.com',
         name: 'Leandro Blanes',

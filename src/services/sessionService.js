@@ -1,12 +1,18 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import eventService, { LOGIN, LOGOUT } from "./eventService"
+import eventService, { LOGIN, LOGOUT, LOAD } from "./eventService"
+import cartService from './cartService'
+
+const initialData = {
+    logged: false,
+    user: null,
+    lastUserId: 0,
+    users: [],
+    lastOrderId: 0,
+    orders: []
+}
 
 class SessionService {
-    #data = {
-        logged: false,
-        user: null,
-        users: []
-    }
+    #data = initialData
 
     constructor() {
         this.load()
@@ -20,10 +26,19 @@ class SessionService {
         this.#data = JSON.parse(json)
         if (this.#data.logged)
             eventService.notify(LOGIN)
+
+        console.log('load', this.#data)
+        //this.#data.lastOrderId = 0
+        //this.#data.orders = []
+        // this.#data.users[0].id = 1
+        // this.#data.users[1].id = 2
+        //await this.save()
+
+        eventService.notify(LOAD)
     }
 
     async save() {
-        //await AsyncStorage.setItem('sessionData', JSON.stringify(this.#data))
+        await AsyncStorage.setItem('sessionData', JSON.stringify(this.#data))
     }
 
     async login(email, password) {
@@ -37,6 +52,7 @@ class SessionService {
         this.#data.logged = true
         this.#data.user = user
         eventService.notify(LOGIN)
+        return true
     }
 
     async logout() {
@@ -56,8 +72,36 @@ class SessionService {
         await this.save()
     }
 
+    async saveOrder(wantChange, change) {
+        const newId = ++this.#data.lastOrderId
+
+        this.#data.orders.push({
+            id: newId,
+            userId: this.user.id,
+            items: cartService.items.map(el => ({
+                productId: el.productId,
+                name: el.product.name,
+                price: el.product.price,
+                quantity: el.quantity
+            })),
+            totalPrice: cartService.totalPrice,
+            wantChange,
+            change
+        })
+
+        cartService.clear()
+        await this.save()
+
+        return newId
+    }
+
+    async findOrder(id) {
+        return this.#data.orders.find(el => el.id == id)
+    }
+
     get logged() { return this.#data.logged }
     get user() { return this.#data.user }
+    get users() { return this.#data.users }
 }
 
 const sessionService = new SessionService()

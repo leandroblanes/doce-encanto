@@ -37,6 +37,10 @@ class CartService {
         }
     }
 
+    clear() {
+        this.items = []
+    }
+
     get totalQuantity() {
         return this.items.reduce((acc, el) => acc + el.quantity, 0)
     }

@@ -30,3 +30,4 @@ export default eventService
 export const CART_UPDATED = 'cart_updated'
 export const LOGIN = 'login'
 export const LOGOUT = 'logout'
+export const LOAD = 'load'
