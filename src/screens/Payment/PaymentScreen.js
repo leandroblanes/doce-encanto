@@ -3,11 +3,11 @@ import Title from "../../components/Title"
 import { StyleSheet, Text, View, ScrollView } from "react-native"
 import { RadioButton, TextInput, Button } from "react-native-paper"
 import React, { useEffect, useState } from "react"
-import cores from "../../util/cores"
+import colors from "../../util/colors"
 import cartService from "../../services/cartService"
 import eventService, { CART_UPDATED } from "../../services/eventService"
 import sessionService from "../../services/sessionService"
-import { formatarMoeda } from "../../util/Util"
+import { formatarMoeda } from "../../util/util"
 import CurrencyInput from "../../components/CurrencyInput"
 
 const styles = StyleSheet.create({
@@ -69,14 +69,14 @@ function Payment({ navigation }) {
                         <View style={styles.radioItem}>
                             <RadioButton
                                 value={true}
-                                color={cores.marrom}
+                                color={colors.marrom}
                             />
                             <Text>Sim</Text>
                         </View>
                         <View style={{ ...styles.radioItem, marginLeft: 10 }}>
                             <RadioButton
                                 value={false}
-                                color={cores.marrom}
+                                color={colors.marrom}
                             />
                             <Text>Não</Text>
                         </View>

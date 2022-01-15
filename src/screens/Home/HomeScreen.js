@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, ScrollView, Image, View } from 'react-native';
 
 import BaseScreen from '../BaseScreen';
 import CategoryList from './CategoryList';
@@ -8,6 +8,14 @@ import categoryService from '../../services/categoryService';
 import sessionService from '../../services/sessionService';
 import eventService, { LOAD } from '../../services/eventService';
 
+import logo from '../../../assets/logo-200.png'
+
+const styles = StyleSheet.create({
+    logoContainer: {
+        alignItems: 'center',
+        marginBottom: 30
+    }
+})
 
 function HomeScreen({ navigation }) {
     const [categoryList, setCategoryList] = useState(null)
@@ -28,10 +36,15 @@ function HomeScreen({ navigation }) {
 
     return (
         <BaseScreen>
-            <CategoryList categoryList={categoryList} navigation={navigation} />
-            {/* <Text>
+            <ScrollView>
+                <View style={styles.logoContainer}>
+                    <Image source={logo} />
+                </View>
+                <CategoryList categoryList={categoryList} navigation={navigation} />
+                {/* <Text>
                 {JSON.stringify(users)}
             </Text> */}
+            </ScrollView>
         </BaseScreen>
     )
 }

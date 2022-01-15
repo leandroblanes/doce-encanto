@@ -9,7 +9,7 @@ import sessionService from "../../services/sessionService";
 import ItemList from "./ItemList";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Currency from "../../components/Currency";
-import cores from "../../util/cores";
+import colors from "../../util/colors";
 import { Button } from "react-native-paper";
 
 const styles = StyleSheet.create({
@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         paddingRight: 10,
         fontSize: 18,
-        color: cores.marrom
+        color: colors.marrom
     },
     totalValue: {
         fontSize: 18,
         fontWeight: "bold",
-        color: cores.marrom
+        color: colors.marrom
     },
     button: {
         marginTop: 10

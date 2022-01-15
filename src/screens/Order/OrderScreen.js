@@ -8,11 +8,11 @@ import Currency from "../../components/Currency"
 
 import sessionService from "../../services/sessionService"
 import eventService, { CART_UPDATED } from "../../services/eventService"
-import cores from "../../util/cores"
+import colors from "../../util/colors"
 
 const styles = StyleSheet.create({
     orderNumber: {
-        color: cores.marrom,
+        color: colors.marrom,
         fontSize: 18,
         marginBottom: 10
     },
@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         fontSize: 20,
         marginTop: 5,
-        color: cores.marrom
+        color: colors.marrom
     },
     troco: {
         textAlign: 'right',
         marginTop: 5,
-        color: cores.marrom
+        color: colors.marrom
     }
 })
 
@@ -40,10 +40,7 @@ function OrderScreen({ navigation, route }) {
     const [order, setOrder] = useState()
 
     useEffect(() => {
-        sessionService.findOrder(orderId).then(order => {
-            console.log(order)
-            setOrder(order)
-        })
+        sessionService.findOrder(orderId).then(setOrder)
     }, [])
 
     return (

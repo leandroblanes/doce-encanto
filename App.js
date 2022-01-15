@@ -11,7 +11,7 @@ import RegisterScreen from './src/screens/Register/RegisterScreen';
 import PaymentScreen from './src/screens/Payment/PaymentScreen';
 import OrderScreen from './src/screens/Order/OrderScreen';
 
-import cores from './src/util/cores';
+import colors from './src/util/colors';
 import HeaderCartButton from './src/components/HeaderCartButton';
 
 const Stack = createNativeStackNavigator();
@@ -20,15 +20,15 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: cores.marrom,
-    accent: cores.rosa,
+    primary: colors.marrom,
+    accent: colors.rosa,
   }
 }
 
 const headerOptions = {
   title: 'Doce Encanto',
   headerStyle: {
-    backgroundColor: cores.marrom
+    backgroundColor: colors.marrom
   },
   headerTintColor: '#fff',
   headerTitleAlign: 'center',

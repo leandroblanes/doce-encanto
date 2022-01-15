@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Text, View, ImageBackground, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import { Button, Headline, Paragraph } from 'react-native-paper';
 import Currency from '../../components/Currency';
-import cores from '../../util/cores';
+import colors from '../../util/colors';
 
 import BaseScreen from '../BaseScreen';
 import QuantitySelector from '../../components/QuantitySelector';
 import FloatingCart from '../../components/FloatingCart';
 
 import cartService from '../../services/cartService';
+import images from '../../util/images';
 
 const styles = StyleSheet.create({
     container: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     price: {
-        color: cores.marrom,
+        color: colors.marrom,
         marginTop: 5,
         marginBottom: 10,
         fontSize: 18
@@ -29,8 +30,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: cores.marromClaro,
+        backgroundColor: colors.marromClaro,
         height: 100
+    },
+    imageContainer: {
+        alignItems: 'center'
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 10,
+        overflow: 'hidden',
+        marginBottom: 20
+
     }
 })
 
@@ -48,6 +60,14 @@ function ProductScreen({ route, navigation }) {
             <ScrollView style={styles.scrollView}>
                 <BaseScreen>
                     <View>
+                        {product.image && (
+                            <View style={styles.imageContainer}>
+                                <ImageBackground
+                                    source={images.products[product.image]}
+                                    style={styles.image}
+                                />
+                            </View>
+                        )}
                         <View>
                             <Headline>{product.name}</Headline>
                             <Currency style={styles.price} value={product.price} />

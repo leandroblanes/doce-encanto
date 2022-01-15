@@ -1,5 +1,5 @@
 import { TextInput } from "react-native"
-import { formatarMoeda } from "../util/Util"
+import { formatarMoeda } from "../util/util"
 
 function CurrencyInput(props) {
     const { value, onChangeText, onBlur, onFocus, style } = props

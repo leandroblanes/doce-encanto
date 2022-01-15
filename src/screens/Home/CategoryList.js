@@ -4,9 +4,6 @@ import Category from "./Category";
 const styles = StyleSheet.create({
     categoriesList: {
         width: 320,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        flexWrap: "wrap"
     }
 });
 

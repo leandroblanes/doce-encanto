@@ -1,21 +1,28 @@
 import { StyleSheet, ImageBackground, TouchableWithoutFeedback, View, Text } from "react-native"
+import images from '../../util/images';
+import colors from "../../util/colors";
 
 const styles = StyleSheet.create({
     category: {
-        width: 150,
-        height: 150,
         borderRadius: 10,
         overflow: 'hidden',
-        marginBottom: 20
+        backgroundColor: colors.marromClaro,
+        marginBottom: 10,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    image: {
+        width: 80,
+        height: 80,
+        marginRight: 20
+    },
+    text: {
+        fontSize: 20,
+        color: colors.marrom
     }
 });
 
 function Category({ category, navigation }) {
-
-    const image = {
-        uri: category.image
-    }
-
     const navigate = () => {
 
         navigation.navigate('Category', {
@@ -25,7 +32,10 @@ function Category({ category, navigation }) {
 
     return (
         <TouchableWithoutFeedback onPress={navigate}>
-            <ImageBackground source={image} style={styles.category} />
+            <View style={styles.category}>
+                <ImageBackground source={images.categories[category.image]} style={styles.image} />
+                <Text style={styles.text}>{category.name}</Text>
+            </View>
         </TouchableWithoutFeedback>
     )
 }

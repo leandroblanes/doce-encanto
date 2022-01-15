@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native"
 import { useNavigation } from "@react-navigation/native";
-import cores from "../util/cores";
+import colors from "../util/colors";
 import sessionService from "../services/sessionService";
 import eventService, { LOGIN } from "../services/eventService";
 
@@ -10,11 +10,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     top: {
-        backgroundColor: cores.marromClaro,
+        backgroundColor: colors.marromClaro,
         padding: 5,
     },
     topText: {
-        color: cores.marrom,
+        color: colors.marrom,
         textAlign: "center"
     },
     content: {

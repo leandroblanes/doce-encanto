@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
-import cores from '../util/cores'
+import colors from '../util/colors'
 
 const styles = StyleSheet.create({
     container: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 16,
         borderBottomLeftRadius: 16,
         borderStyle: 'solid',
-        backgroundColor: cores.marrom,
+        backgroundColor: colors.marrom,
     },
     buttonText: {
         color: '#fff',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 16,
         borderBottomRightRadius: 16,
         borderStyle: 'solid',
-        backgroundColor: cores.marrom,
+        backgroundColor: colors.marrom,
     },
 })
 

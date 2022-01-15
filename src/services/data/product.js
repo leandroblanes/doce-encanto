@@ -1,52 +1,131 @@
 const mock = [
     {
-        id: 1,
+        id: 101,
         categoryId: 1,
-        name: 'BROWNIE COBERTURA CARAMELO E CHOCOLATE E CROCANTE DE NOZES',
-        description: 'Non magna labore ad duis. Fugiat magna excepteur aliqua amet esse aute do est ipsum ut nostrud labore. Fugiat non ea velit pariatur aliquip cupidatat excepteur sint Lorem non labore ut. Reprehenderit aliquip sunt labore labore tempor minim duis culpa ipsum exercitation commodo aliqua excepteur. Eiusmod et eiusmod ipsum amet laboris incididunt.',
-        price: 17.98
+        name: 'BROWNIE (UNIDADE)',
+        description: 'Sabor intenso de chocolate, super molhado, levemente crocante com nozes tostadas e coberto com uma deliciosa mousse de caramelho e chocolate com toque especial de flor de sal e finalizada com praliné de nozes e especiarias',
+        image: 'brownie',
+        price: 18
     },
     {
-        id: 2,
-        categoryId: 2,
-        name: 'CAROLINAS DE MARACUJÁ COM MANGA E RASPAS DE LARANJA 8 UNIDADES',
-        description: 'Enim nulla esse esse laboris ad Lorem anim adipisicing aute minim elit. Et do cillum nisi aliquip. Est aliqua tempor culpa anim quis duis enim incididunt anim nisi ad qui. Mollit elit duis incididunt cillum dolore excepteur nisi do.',
-        price: 20.44
-    },
-    {
-        id: 3,
-        categoryId: 2,
-        name: 'CAROLINAS DE MARACUJÁ COM MANGA E RASPAS DE LARANJA 8 UNIDADES',
-        description: 'Enim nulla esse esse laboris ad Lorem anim adipisicing aute minim elit. Et do cillum nisi aliquip. Est aliqua tempor culpa anim quis duis enim incididunt anim nisi ad qui. Mollit elit duis incididunt cillum dolore excepteur nisi do.',
-        price: 31.82
-    },
-    {
-        id: 4,
-        categoryId: 3,
-        name: 'CHEESE CAKE COM MORANGOS',
-        description: 'Mollit cillum aute adipisicing sit ipsum consequat eu est velit in id labore duis ex. Ipsum officia veniam elit consequat commodo enim fugiat tempor amet nulla Lorem velit. Sint aliqua Lorem adipisicing aliquip.',
-        price: 18.35
-    },
-    {
-        id: 5,
+        id: 102,
         categoryId: 1,
-        name: 'PAVLOVA FRUTAS VERMELHAS',
-        description: 'Excepteur ut occaecat do sit esse incididunt sint fugiat deserunt sint laboris. Tempor dolore ex culpa amet in pariatur deserunt ex voluptate occaecat officia nisi quis. Exercitation culpa laboris aute aute commodo ad culpa. Id exercitation aliquip officia ullamco veniam ex velit dolor exercitation aliquip eiusmod. Et veniam eu quis aliqua consequat mollit. Sint reprehenderit eu aliqua aliquip velit excepteur consectetur laborum nisi quis ex duis. Laborum est exercitation laborum eu non excepteur est sunt proident.',
-        price: 7.45
+        name: 'CHOUX CRAQUELIN (UNIDADE)',
+        description: 'Massa leve com uma crosta craquelada e crocante recheado com uma delicada mousseline de morango ou creme de avelã',
+        image: 'choux',
+        price: 17
     },
     {
-        id: 6,
-        categoryId: 3,
-        name: 'QUICHE DE BRÓCOLIS E BACON',
-        description: 'Irure ut nostrud qui cupidatat est irure commodo occaecat officia occaecat laboris. Duis pariatur quis id quis laborum qui occaecat deserunt ut id nostrud in mollit exercitation. Ea cupidatat dolor sunt et excepteur excepteur quis aute ex ex quis. Minim exercitation in tempor ad mollit eiusmod sint est cillum occaecat sint sit.',
+        id: 103,
+        categoryId: 1,
+        name: 'CHEESECAKE (FATIA)',
+        description: 'Sobre uma base de biscoito, encontramos um creme de queijo macio aromatizado com baunilha e com uma leve acidez de limão, cobreta por uma compota de morango',
+        image: 'cheesecake',
+        price: 17
+    },
+    {
+        id: 104,
+        categoryId: 1,
+        name: 'PAVLOVA (UNIDADE)',
+        description: 'Delicioso suspiro de merengue francês, levemente aromatizado com raspas de limão, recheado com breme de nata, decorado com uma deliciosa geleia de frutas vermelhas',
+        image: 'pavlova',
+        price: 10
+    },
+    {
+        id: 105,
+        categoryId: 1,
+        name: 'TIRAMISSU (FATIA)',
+        description: 'Sobremesa tipicamente Italiana, com camadas de biscoistos de champanhe banhado no café e vinho do tipo Marsala, entremeados por um creme à base de queijo mascarpone e finalizado com cacau em pó',
+        image: null,
         price: 20
     },
     {
-        id: 7,
+        id: 106,
         categoryId: 1,
-        name: 'TIRAMISSU',
-        description: 'Sint aute nulla ipsum pariatur voluptate sit tempor sit. Cillum culpa eu quis irure qui id. Amet minim elit est ut cupidatat occaecat ullamco ex adipisicing id adipisicing. Et est anim sunt dolore aute sunt in nostrud dolor mollit Lorem commodo et aute. Lorem cillum culpa officia cupidatat Lorem. Lorem aliquip culpa irure ut occaecat. Enim aliquip culpa amet reprehenderit eu excepteur quis adipisicing duis magna qui excepteur culpa anim.',
-        price: 20.17
+        name: 'CAROLINAS (08 UNIDADES)',
+        description: 'Massinha super recheada comuma deliciosa mousse de maracujá aromatizada com raspas de laranja e finalizada com pedados de manga palmer',
+        image: 'carolina',
+        price: 20
+    },
+    {
+        id: 107,
+        categoryId: 1,
+        name: 'CAROLINAS (16 UNIDADES)',
+        description: 'Massinha super recheada comuma deliciosa mousse de maracujá aromatizada com raspas de laranja e finalizada com pedados de manga palmer',
+        image: 'carolina',
+        price: 38
+    },
+    {
+        id: 108,
+        categoryId: 1,
+        name: 'QUICHE (FATIA)',
+        description: 'Sobre uma massa super leve, encontramos um delicioso recheio de brócolis, bancon e queijo, temperado com pimenta do reino e nos moscada, finalidada com queijoparmesãp gratinado',
+        image: 'quiche',
+        price: 20
+    },
+    {
+        id: 109,
+        categoryId: 1,
+        name: 'TARTELETAS (UNIDADE)',
+        description: 'Massinha super leve recheada com caprese ou guacamole',
+        image: null,
+        price: 20
+    },
+    {
+        id: 201,
+        categoryId: 2,
+        name: 'COCA-COLA (LATA)',
+        description: '',
+        image: null,
+        price: 5
+    },
+    {
+        id: 202,
+        categoryId: 2,
+        name: 'FANTA LARANJA (LATA)',
+        description: '',
+        image: null,
+        price: 5
+    },
+    {
+        id: 203,
+        categoryId: 2,
+        name: 'SUCO DE UVA (LATA)',
+        description: 'Coca Cola / Fanta Laranja',
+        image: null,
+        price: 6
+    },
+    {
+        id: 301,
+        categoryId: 3,
+        name: 'PONTO NERO CELEBRATION MOSCATEL 750ML',
+        description: 'Nero / Moscatel / Vale dos Vinhedos Brasil - Espumante delicadamente doce, remetendo ao aroma frutado. Harmoniza com cheesecakes com frutas, sobremesas citricas e sorvetes',
+        image: null,
+        price: 85
+    },
+    {
+        id: 302,
+        categoryId: 3,
+        name: 'VINHO AURORA COLHEITA TARDIA BRANCO 500ML',
+        description: 'Moscato e Malvasia / Vinícola Aurora/Late Harvest. Aroma de nozes, flores brncas e mel. Hamoniza com preparações com maracujá, limão e sobremees mais gordurosas',
+        image: null,
+        price: 60
+    },
+    {
+        id: 303,
+        categoryId: 3,
+        name: 'TERROIR CHARDONNAY 2020 750ML',
+        description: 'Casa Valduga / Chardonnay / Vale dos Vinedos. Aroma de frutas tropicais harmoniza com cremes',
+        image: null,
+        price: 120
+    },
+    {
+        id: 304,
+        categoryId: 3,
+        name: 'ORIGEM ELEGANCE CARBERNET SAUVIGNON 750ML',
+        description: 'Casa Valduga / Cabernet Sauvignon / Vale dos Vinhedo, Brasil. Aroma de frutas vermelhas. Hamoniza com sobremesas de chocolate',
+        image: null,
+        price: 90
     },
 ]
 
