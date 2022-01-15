@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
@@ -19,12 +19,14 @@ const styles = StyleSheet.create({
     }
 })
 
-function Item({ text, icon, onPress }) {
+function Item({ text, icon, onPress, disabled }) {
+    const color = useMemo(() => disabled ? '#FFFFFF66' : 'white', [disabled])
+
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback onPress={!disabled ? onPress : null}>
             <View style={styles.item}>
-                <MaterialCommunityIcons name={icon} color="white" size={26} />
-                <Text style={{ color: 'white' }}>
+                <MaterialCommunityIcons name={icon} color={color} size={26} />
+                <Text style={{ color }}>
                     {text}
                 </Text>
             </View>
@@ -35,11 +37,18 @@ function Item({ text, icon, onPress }) {
 function BottomBar() {
     const navigation = useNavigation()
 
+    const navigate = (name) => {
+        navigation.reset({
+            index: 0,
+            routes: [{ name }]
+        })
+    }
+
     return (
         <View style={styles.container}>
-            <Item text="Home" icon="home" onPress={() => navigation.replace('Categories')} />
-            <Item text="Pedidos" icon="cart" onPress={() => navigation.replace('Orders')} />
-            <Item text="Perfil" icon="account" onPress={() => navigation.replace('Profile')} />
+            <Item text="Home" icon="home" onPress={() => navigate('Categories')} />
+            <Item text="Pedidos" icon="cart" onPress={() => navigate('Orders')} />
+            <Item text="Perfil" icon="account" onPress={() => navigate('Profile')} />
         </View>
     )
 }

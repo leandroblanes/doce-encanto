@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, ScrollView } from "react-native"
 
 import colors from "../util/colors";
 import sessionService from "../services/sessionService";
-import eventService, { LOGIN } from "../services/eventService";
+import eventService, { LOGIN, LOGOUT } from "../services/eventService";
 import BottomBar from "../components/BottomBar";
 
 const styles = StyleSheet.create({
@@ -29,12 +29,20 @@ function BaseScreen({ children, hideUser }) {
     const [user, setUser] = useState(sessionService.user)
 
     useEffect(() => {
-        const id = eventService.subscribe(LOGIN, () => {
+        const loginId = eventService.subscribe(LOGIN, () => {
             setLogged(sessionService.logged)
             setUser({ ...sessionService.user })
         })
 
-        return () => eventService.unsubuscribe(id)
+        const logoutId = eventService.subscribe(LOGOUT, () => {
+            setLogged(false)
+            setUser(null)
+        })
+
+        return () => {
+            eventService.unsubuscribe(loginId)
+            eventService.unsubuscribe(logoutId)
+        }
     }, [])
 
     return (

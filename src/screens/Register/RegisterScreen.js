@@ -15,15 +15,12 @@ const styles = StyleSheet.create({
 
 function RegisterScreen({ navigation }) {
     const [data, setData] = useState({
-        email: 'lblanes@gmail.com',
-        name: 'Leandro Blanes',
-        phone: '(12) 99130-9234',
-        password: '123'
+        email: '',
+        name: '',
+        phone: '',
+        password: ''
     })
     const [msg, setMsg] = useState(null)
-
-    useEffect(() => {
-    }, [])
 
     const handleChange = (field, value) => {
         setData({

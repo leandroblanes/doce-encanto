@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
     }
 })
 
-function LoginScreen({ navigation }) {
+function LoginScreen({ navigation, route }) {
+    const { redirect } = route.params
     const [data, setData] = useState({
-        email: 'lblanes@gmail.com',
-        password: '1234'
+        email: 'john@gmail.com',
+        password: '123'
     })
     const [msg, setMsg] = useState(null)
 
@@ -48,7 +49,10 @@ function LoginScreen({ navigation }) {
         }
 
         if (await sessionService.login(data.email, data.password)) {
-            navigation.navigate('Payment')
+            if (redirect)
+                navigation.navigate(redirect)
+            else
+                navigation.navigate('Payment')
         } else {
             setMsg('Dados de acesso inválidos')
         }

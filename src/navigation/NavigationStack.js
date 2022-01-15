@@ -81,9 +81,7 @@ function NavigationStack() {
             <Stack.Screen
                 name="Profile"
                 component={ProfileScreen}
-                options={{
-                    headerShown: false
-                }}
+                options={headerOptions}
             />
         </Stack.Navigator>
     )

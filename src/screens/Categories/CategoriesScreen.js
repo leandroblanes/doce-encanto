@@ -22,8 +22,9 @@ function CategoriesScreen({ navigation }) {
     const [users, setUsers] = useState(sessionService.users)
 
     useEffect(() => {
+        //navigation.navigate('Order', { orderId: 1 })
+
         categoryService.list().then(categoryList => {
-            navigation.navigate('Category', { category: categoryList[0] })
             setCategoryList(categoryList)
         })
 
@@ -37,7 +38,7 @@ function CategoriesScreen({ navigation }) {
     return (
         <BaseScreen>
             <View style={styles.logoContainer}>
-                <Image source={logo} style={{ width: 200, height: 150 }} />
+                <Image source={logo} style={{ width: 150, height: 112.5 }} />
             </View>
             <CategoryList categoryList={categoryList} navigation={navigation} />
             {/* <Text>

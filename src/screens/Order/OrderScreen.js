@@ -9,12 +9,24 @@ import Currency from "../../components/Currency"
 import sessionService from "../../services/sessionService"
 import eventService, { CART_UPDATED } from "../../services/eventService"
 import colors from "../../util/colors"
+import DateTime from "../../components/DateTime"
 
 const styles = StyleSheet.create({
+    orderNumberContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 15
+    },
+    orderNumberContainerItem: {
+        flex: 1
+    },
     orderNumber: {
         color: colors.marrom,
         fontSize: 18,
-        marginBottom: 10
+    },
+    date: {
+        textAlign: 'right',
+        color: '#999'
     },
     bold: {
         fontWeight: 'bold'
@@ -40,27 +52,40 @@ function OrderScreen({ navigation, route }) {
     const [order, setOrder] = useState()
 
     useEffect(() => {
-        sessionService.findOrder(orderId).then(setOrder)
+        sessionService.findOrder(orderId).then(order => {
+            setOrder(order)
+        })
     }, [])
 
     return (
         <BaseScreen>
             <Title text="Resumo" />
-            <Text style={styles.orderNumber}>Pedido Nº <Text style={styles.bold}>{orderId}</Text></Text>
-            <ItemList itemList={order?.items} />
-            <View>
-                <Text style={styles.total}>
-                    <Text>Total:    </Text>
-                    <Text style={styles.bold}>
-                        <Currency value={order.totalPrice} />
-                    </Text>
-                </Text>
-                {order.wantChange && (
-                    <Text style={styles.troco}>
-                        Trazer troco para <Text style={styles.bold}><Currency value={order.change} /></Text>
-                    </Text>
-                )}
-            </View>
+            {order && (
+                <React.Fragment>
+                    <View style={styles.orderNumberContainer}>
+                        <View style={styles.orderNumberContainerItem}>
+                            <Text style={styles.orderNumber}>Pedido Nº <Text style={styles.bold}>{orderId}</Text></Text>
+                        </View>
+                        <View style={styles.orderNumberContainerItem}>
+                            <DateTime style={styles.date} value={order.date} showMinutes />
+                        </View>
+                    </View>
+                    <ItemList itemList={order?.items} />
+                    <View>
+                        <Text style={styles.total}>
+                            <Text>Total:    </Text>
+                            <Text style={styles.bold}>
+                                <Currency value={order.totalPrice} />
+                            </Text>
+                        </Text>
+                        {order.wantChange && (
+                            <Text style={styles.troco}>
+                                Trazer troco para <Text style={styles.bold}><Currency value={order.change} /></Text>
+                            </Text>
+                        )}
+                    </View>
+                </React.Fragment>
+            )}
         </BaseScreen>
     )
 }

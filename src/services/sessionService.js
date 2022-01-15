@@ -29,9 +29,12 @@ class SessionService {
 
         console.log('load', this.#data)
         //this.#data.lastOrderId = 0
-        //this.#data.orders = []
+        // this.#data.orders[0].date = new Date(2022, 0, 14, 10, 0)
+        // this.#data.orders[1].date = new Date(2022, 0, 14, 11, 0)
+        // this.#data.orders[2].date = new Date(2022, 0, 15, 10, 0)
         // this.#data.users[0].id = 1
         // this.#data.users[1].id = 2
+        // this.#data.logged = false
         //await this.save()
 
         eventService.notify(LOAD)
@@ -78,6 +81,7 @@ class SessionService {
 
         this.#data.orders.push({
             id: newId,
+            date: new Date(),
             userId: this.user.id,
             items: cartService.items.map(el => ({
                 productId: el.productId,
@@ -103,6 +107,7 @@ class SessionService {
     get logged() { return this.#data.logged }
     get user() { return this.#data.user }
     get users() { return this.#data.users }
+    get orders() { return this.#data.orders }
 }
 
 const sessionService = new SessionService()
