@@ -6,7 +6,13 @@ const initialData = {
     logged: false,
     user: null,
     lastUserId: 0,
-    users: [],
+    users: [{
+        id: 1,
+        name: 'John Smith',
+        email: 'john@gmail.com',
+        phone: '(12) 99999-9999',
+        password: '123'
+    }],
     lastOrderId: 0,
     orders: []
 }

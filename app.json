@@ -23,7 +23,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "br.com.blanestech.doce_encanto",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"

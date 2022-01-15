@@ -1,12 +1,12 @@
 import { TextInput } from "react-native"
-import { formatarMoeda } from "../util/util"
+import { formatCurrency } from "../util/util"
 
 function CurrencyInput(props) {
     const { value, onChangeText, onBlur, onFocus, style } = props
 
     const handleChange = (text) => {
         let newValue = 0
-        if (text.length != '') {
+        if (text.length > 0) {
             newValue = parseFloat(text.replace(/[^0-9]/gi, '')) / 100
         }
 
@@ -19,7 +19,7 @@ function CurrencyInput(props) {
             style={style}
             onBlur={onBlur}
             onFocus={onFocus}
-            value={value == 0 ? '' : formatarMoeda(value || 0)}
+            value={value == 0 ? '' : formatCurrency(value || 0)}
             onChangeText={handleChange}
         />
     )

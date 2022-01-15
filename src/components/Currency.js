@@ -1,4 +1,5 @@
 import { Text } from "react-native"
+import { formatCurrency } from '../util/util'
 
 function Currency({ value, style }) {
     if (value == null || value == undefined)
@@ -6,10 +7,7 @@ function Currency({ value, style }) {
 
     return (
         <Text style={style}>
-            R$ {value.toLocaleString('pt-BR', {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-            })}
+            R$ {formatCurrency(value)}
         </Text>
     )
 }
