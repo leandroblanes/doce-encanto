@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ScrollView, ImageBackground } from 'react-native';
+import { useState } from 'react';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Button, Headline, Paragraph } from 'react-native-paper';
 import Currency from '../../components/Currency';
 import colors from '../../util/colors';

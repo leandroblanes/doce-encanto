@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { View, Text } from 'react-native'
 
 import eventService, { LOAD, LOGIN, LOGOUT } from "../../services/eventService"
 import sessionService from "../../services/sessionService"

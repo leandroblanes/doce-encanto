@@ -5,7 +5,7 @@ import PhoneInput from "../../components/PhoneInput";
 import NumberInput from "../../components/NumberInput";
 import { TextInput, Button, Snackbar } from 'react-native-paper';
 import sessionService from "../../services/sessionService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const styles = StyleSheet.create({
     field: {

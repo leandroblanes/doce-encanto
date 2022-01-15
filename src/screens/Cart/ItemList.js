@@ -1,4 +1,4 @@
-import { View, StyleSheet, Total } from "react-native"
+import { View, StyleSheet } from "react-native"
 import Item from "./Item"
 
 const styles = StyleSheet.create({

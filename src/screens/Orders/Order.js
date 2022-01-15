@@ -1,6 +1,5 @@
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from "react-native"
 
-
 import DateTime from '../../components/DateTime'
 import Currency from "../../components/Currency";
 import colors from "../../util/colors";

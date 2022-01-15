@@ -1,13 +1,11 @@
 import BaseScreen from "../BaseScreen"
 import Title from "../../components/Title"
 import { StyleSheet, Text, View } from "react-native"
-import { RadioButton, TextInput, Button } from "react-native-paper"
 import React, { useEffect, useState } from "react"
 import ItemList from "./ItemList"
 import Currency from "../../components/Currency"
 
 import sessionService from "../../services/sessionService"
-import eventService, { CART_UPDATED } from "../../services/eventService"
 import colors from "../../util/colors"
 import DateTime from "../../components/DateTime"
 

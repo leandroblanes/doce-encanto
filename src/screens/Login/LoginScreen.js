@@ -1,6 +1,6 @@
 import BaseScreen from "../BaseScreen";
 import Title from "../../components/Title";
-import { StyleSheet, Text, View, TextInput as OriginalTextInput } from "react-native";
+import { StyleSheet, View, TextInput as OriginalTextInput } from "react-native";
 import { TextInput, Button, Snackbar } from 'react-native-paper';
 import sessionService from "../../services/sessionService";
 import { useEffect, useState } from "react";

@@ -1,5 +1,4 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { View, Text } from 'react-native';
 
 import colors from '../util/colors';
 import HeaderCartButton from '../components/HeaderCartButton';
