@@ -26,7 +26,7 @@ function HeaderCartButton() {
 
     return cartButtonVisible ?
         <TouchableWithoutFeedback onPress={navigateToCart}>
-            <Icon name="shopping-cart" size={25} color={"#fff"} />
+            <Icon name="shopping-cart" size={25} color={"#fff"} style={{ marginRight: 20 }} />
         </TouchableWithoutFeedback> :
         null
 

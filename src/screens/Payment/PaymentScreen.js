@@ -1,6 +1,6 @@
 import BaseScreen from "../BaseScreen"
 import Title from "../../components/Title"
-import { StyleSheet, Text, View, ScrollView } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 import { RadioButton, TextInput, Button } from "react-native-paper"
 import React, { useEffect, useState } from "react"
 import colors from "../../util/colors"
@@ -47,69 +47,67 @@ function Payment({ navigation }) {
 
     const save = async () => {
         const orderId = await sessionService.saveOrder(data.wantChange, data.change)
-        navigation.navigate('Resumo', { orderId })
+        navigation.navigate('Order', { orderId })
     }
 
     return (
         <BaseScreen>
-            <ScrollView>
-                <Title text="Forma de pagamento" />
-                <TextInput
-                    label="Total do Pedido"
-                    value={formatarMoeda(totalPrice)}
-                    style={styles.field}
-                    disabled={true}
-                />
-                <Text>Precisa de troco?</Text>
-                <RadioButton.Group
-                    onValueChange={value => handleChange('wantChange', value)}
-                    value={data.wantChange}
-                >
-                    <View style={styles.radioGroup}>
-                        <View style={styles.radioItem}>
-                            <RadioButton
-                                value={true}
-                                color={colors.marrom}
-                            />
-                            <Text>Sim</Text>
-                        </View>
-                        <View style={{ ...styles.radioItem, marginLeft: 10 }}>
-                            <RadioButton
-                                value={false}
-                                color={colors.marrom}
-                            />
-                            <Text>Não</Text>
-                        </View>
+            <Title text="Forma de pagamento" />
+            <TextInput
+                label="Total do Pedido"
+                value={formatarMoeda(totalPrice)}
+                style={styles.field}
+                disabled={true}
+            />
+            <Text>Precisa de troco?</Text>
+            <RadioButton.Group
+                onValueChange={value => handleChange('wantChange', value)}
+                value={data.wantChange}
+            >
+                <View style={styles.radioGroup}>
+                    <View style={styles.radioItem}>
+                        <RadioButton
+                            value={true}
+                            color={colors.marrom}
+                        />
+                        <Text>Sim</Text>
                     </View>
-                </RadioButton.Group>
-                {data.wantChange && (
-                    <React.Fragment>
-                        <TextInput
-                            label="Pra quanto?"
-                            value={data.change}
-                            onChangeText={text => handleChange('change', text)}
-                            style={styles.field}
-                            render={props =>
-                                <CurrencyInput {...props} />
-                            }
+                    <View style={{ ...styles.radioItem, marginLeft: 10 }}>
+                        <RadioButton
+                            value={false}
+                            color={colors.marrom}
                         />
-                        <TextInput
-                            label="Valor do troco"
-                            value={data.change > 0 ? formatarMoeda(data.change - totalPrice) : '0,00'}
-                            style={styles.field}
-                            disabled
-                        />
-                    </React.Fragment>
-                )}
-                <Button
-                    mode="contained"
-                    onPress={save}
-                    disabled={data.wantChange && data.change < totalPrice}
-                    style={{
-                        marginTop: 20
-                    }}
-                >Finalizar</Button>
-            </ScrollView>
+                        <Text>Não</Text>
+                    </View>
+                </View>
+            </RadioButton.Group>
+            {data.wantChange && (
+                <React.Fragment>
+                    <TextInput
+                        label="Pra quanto?"
+                        value={data.change}
+                        onChangeText={text => handleChange('change', text)}
+                        style={styles.field}
+                        render={props =>
+                            <CurrencyInput {...props} />
+                        }
+                    />
+                    <TextInput
+                        label="Valor do troco"
+                        value={data.change > 0 ? formatarMoeda(data.change - totalPrice) : '0,00'}
+                        style={styles.field}
+                        disabled
+                    />
+                </React.Fragment>
+            )}
+            <Button
+                mode="contained"
+                onPress={save}
+                disabled={data.wantChange && data.change < totalPrice}
+                style={{
+                    marginTop: 20
+                }}
+            >Finalizar</Button>
         </BaseScreen>
     )
 }

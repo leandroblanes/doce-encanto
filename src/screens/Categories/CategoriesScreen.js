@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, ScrollView, Image, View } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
 
 import BaseScreen from '../BaseScreen';
 import CategoryList from './CategoryList';
@@ -8,7 +8,7 @@ import categoryService from '../../services/categoryService';
 import sessionService from '../../services/sessionService';
 import eventService, { LOAD } from '../../services/eventService';
 
-import logo from '../../../assets/logo-200.png'
+import logo from '../../img/logo-200.png'
 
 const styles = StyleSheet.create({
     logoContainer: {
@@ -17,15 +17,15 @@ const styles = StyleSheet.create({
     }
 })
 
-function HomeScreen({ navigation }) {
+function CategoriesScreen({ navigation }) {
     const [categoryList, setCategoryList] = useState(null)
     const [users, setUsers] = useState(sessionService.users)
 
     useEffect(() => {
-        // navigation.navigate('Resumo', { orderId: 1 })
-        // return
-
-        categoryService.list().then(setCategoryList)
+        categoryService.list().then(categoryList => {
+            navigation.navigate('Category', { category: categoryList[0] })
+            setCategoryList(categoryList)
+        })
 
         const loadId = eventService.subscribe(LOAD, () => {
             setUsers([...sessionService.users])
@@ -36,17 +36,15 @@ function HomeScreen({ navigation }) {
 
     return (
         <BaseScreen>
-            <ScrollView>
-                <View style={styles.logoContainer}>
-                    <Image source={logo} />
-                </View>
-                <CategoryList categoryList={categoryList} navigation={navigation} />
-                {/* <Text>
+            <View style={styles.logoContainer}>
+                <Image source={logo} style={{ width: 200, height: 150 }} />
+            </View>
+            <CategoryList categoryList={categoryList} navigation={navigation} />
+            {/* <Text>
                 {JSON.stringify(users)}
             </Text> */}
-            </ScrollView>
         </BaseScreen>
     )
 }
 
-export default HomeScreen
+export default CategoriesScreen

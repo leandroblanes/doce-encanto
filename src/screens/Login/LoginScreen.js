@@ -1,6 +1,6 @@
 import BaseScreen from "../BaseScreen";
 import Title from "../../components/Title";
-import { StyleSheet, Text, View, ScrollView, TextInput as OriginalTextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput as OriginalTextInput } from "react-native";
 import { TextInput, Button, Snackbar } from 'react-native-paper';
 import sessionService from "../../services/sessionService";
 import { useEffect, useState } from "react";
@@ -48,14 +48,14 @@ function LoginScreen({ navigation }) {
         }
 
         if (await sessionService.login(data.email, data.password)) {
-            navigation.navigate('Pagamento')
+            navigation.navigate('Payment')
         } else {
             setMsg('Dados de acesso inválidos')
         }
     }
 
     const register = () => {
-        navigation.navigate('Cadastro')
+        navigation.navigate('Register')
     }
 
     return (

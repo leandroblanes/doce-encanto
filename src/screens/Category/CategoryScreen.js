@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import FloatingCart from '../../components/FloatingCart';
 import Title from '../../components/Title';
 
 import productService from '../../services/productService';
@@ -18,10 +16,8 @@ function CategoryScreen({ route, navigation }) {
 
     return (
         <BaseScreen>
-            <ScrollView>
-                <Title text={category.name} />
-                <ProductList productList={productList} navigation={navigation} />
-            </ScrollView>
+            <Title text={category.name} />
+            <ProductList productList={productList} navigation={navigation} />
         </BaseScreen>
     )
 }

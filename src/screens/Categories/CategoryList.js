@@ -2,9 +2,6 @@ import { StyleSheet, View } from "react-native"
 import Category from "./Category";
 
 const styles = StyleSheet.create({
-    categoriesList: {
-        width: 320,
-    }
 });
 
 function CategoryList({ categoryList, navigation }) {
@@ -12,7 +9,7 @@ function CategoryList({ categoryList, navigation }) {
         return null
 
     return (
-        <View style={styles.categoriesList}>
+        <View>
             {categoryList.map(el => <Category key={el.id} category={el} navigation={navigation} />)}
         </View >
     )

@@ -7,7 +7,7 @@ import eventService, { CART_UPDATED, LOGIN } from "../../services/eventService";
 import sessionService from "../../services/sessionService";
 
 import ItemList from "./ItemList";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Currency from "../../components/Currency";
 import colors from "../../util/colors";
 import { Button } from "react-native-paper";
@@ -55,29 +55,27 @@ function CartScreen({ navigation }) {
     }, [])
 
     return (
-        <ScrollView>
-            <BaseScreen>
-                <Title text="Meu Carrinho" />
-                <ItemList navigation={navigation} itemList={itemList} />
-                <View style={styles.totalContainer}>
-                    <Text style={styles.totalText}>Total</Text>
-                    <Currency style={styles.totalValue} value={totalPrice} />
-                </View>
-                <Button style={styles.button}
-                    mode="contained"
-                    onPress={() => navigation.popToTop()}
-                >
-                    Adicionar mais itens
-                </Button>
-                <Button
-                    style={styles.button}
-                    mode="contained"
-                    onPress={() => navigation.navigate(!logged ? 'Login' : 'Pagamento')}
-                >
-                    Finalizar compra
-                </Button>
-            </BaseScreen>
-        </ScrollView>
+        <BaseScreen>
+            <Title text="Meu Carrinho" />
+            <ItemList navigation={navigation} itemList={itemList} />
+            <View style={styles.totalContainer}>
+                <Text style={styles.totalText}>Total</Text>
+                <Currency style={styles.totalValue} value={totalPrice} />
+            </View>
+            <Button style={styles.button}
+                mode="contained"
+                onPress={() => navigation.popToTop()}
+            >
+                Adicionar mais itens
+            </Button>
+            <Button
+                style={styles.button}
+                mode="contained"
+                onPress={() => navigation.navigate(!logged ? 'Login' : 'Payment')}
+            >
+                Finalizar compra
+            </Button>
+        </BaseScreen>
     )
 }
 

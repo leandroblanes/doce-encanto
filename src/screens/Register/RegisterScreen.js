@@ -1,6 +1,6 @@
 import BaseScreen from "../BaseScreen";
 import Title from "../../components/Title";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet } from "react-native";
 import PhoneInput from "../../components/PhoneInput";
 import NumberInput from "../../components/NumberInput";
 import { TextInput, Button, Snackbar } from 'react-native-paper';
@@ -57,7 +57,7 @@ function RegisterScreen({ navigation }) {
             await sessionService.register(data.email, data.name, data.phone, data.password)
             await sessionService.login(data.email, data.password)
             navigation.popToTop()
-            navigation.navigate('Pagamento')
+            navigation.navigate('Payment')
         } catch (message) {
             console.log(message)
         }
@@ -73,41 +73,39 @@ function RegisterScreen({ navigation }) {
             >
                 {msg}
             </Snackbar>
-            <ScrollView>
 
-                <Title text="Criar uma conta" />
-                <TextInput
-                    label="E-mail"
-                    value={data.email}
-                    onChangeText={text => handleChange('email', text)}
-                    style={styles.field}
-                />
-                <TextInput
-                    label="Nome"
-                    value={data.name}
-                    onChangeText={text => handleChange('name', text)}
-                    style={styles.field}
-                />
-                <TextInput
-                    label="Telefone"
-                    value={data.phone}
-                    render={props =>
-                        <PhoneInput {...props} />
-                    }
-                    onChangeText={text => handleChange('phone', text)}
-                    style={styles.field}
-                />
-                <TextInput
-                    label="Senha"
-                    value={data.password}
-                    render={props =>
-                        <NumberInput {...props} />
-                    }
-                    onChangeText={text => handleChange('password', text)}
-                    style={styles.field}
-                />
-                <Button mode="contained" onPress={save}>Criar uma conta</Button>
-            </ScrollView>
+            <Title text="Criar uma conta" />
+            <TextInput
+                label="E-mail"
+                value={data.email}
+                onChangeText={text => handleChange('email', text)}
+                style={styles.field}
+            />
+            <TextInput
+                label="Nome"
+                value={data.name}
+                onChangeText={text => handleChange('name', text)}
+                style={styles.field}
+            />
+            <TextInput
+                label="Telefone"
+                value={data.phone}
+                render={props =>
+                    <PhoneInput {...props} />
+                }
+                onChangeText={text => handleChange('phone', text)}
+                style={styles.field}
+            />
+            <TextInput
+                label="Senha"
+                value={data.password}
+                render={props =>
+                    <NumberInput {...props} />
+                }
+                onChangeText={text => handleChange('password', text)}
+                style={styles.field}
+            />
+            <Button mode="contained" onPress={save}>Criar uma conta</Button>
         </BaseScreen>
     )
 }

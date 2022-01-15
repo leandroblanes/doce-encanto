@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native"
-import { useNavigation } from "@react-navigation/native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Text, ScrollView } from "react-native"
+
 import colors from "../util/colors";
 import sessionService from "../services/sessionService";
 import eventService, { LOGIN } from "../services/eventService";
+import BottomBar from "../components/BottomBar";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: '100%'
     },
     top: {
         backgroundColor: colors.marromClaro,
@@ -22,10 +24,9 @@ const styles = StyleSheet.create({
     }
 });
 
-function BaseScreen({ children }) {
+function BaseScreen({ children, hideUser }) {
     const [logged, setLogged] = useState(sessionService.logged)
     const [user, setUser] = useState(sessionService.user)
-    const navigation = useNavigation()
 
     useEffect(() => {
         const id = eventService.subscribe(LOGIN, () => {
@@ -37,15 +38,26 @@ function BaseScreen({ children }) {
     }, [])
 
     return (
-        <View style={styles.container}>
-            {logged && (
-                <View style={styles.top}>
-                    <Text style={styles.topText}>{user?.name}</Text>
-                </View>
-            )}
-            <View style={styles.content}>
-                {children}
+        <View style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1
+        }}>
+            <View style={{
+                flex: 1
+            }}>
+                <ScrollView>
+                    {logged && !hideUser && (
+                        <View style={styles.top}>
+                            <Text style={styles.topText}>{user?.name}</Text>
+                        </View>
+                    )}
+                    <View style={styles.content}>
+                        {children}
+                    </View>
+                </ScrollView>
             </View>
+            <BottomBar />
         </View>
     )
 }

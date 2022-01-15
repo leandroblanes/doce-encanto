@@ -1,6 +1,6 @@
 import BaseScreen from "../BaseScreen"
 import Title from "../../components/Title"
-import { StyleSheet, Text, View, ScrollView } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 import { RadioButton, TextInput, Button } from "react-native-paper"
 import React, { useEffect, useState } from "react"
 import ItemList from "./ItemList"
@@ -45,24 +45,22 @@ function OrderScreen({ navigation, route }) {
 
     return (
         <BaseScreen>
-            <ScrollView>
-                <Title text="Resumo" />
-                <Text style={styles.orderNumber}>Pedido Nº <Text style={styles.bold}>{orderId}</Text></Text>
-                <ItemList itemList={order?.items} />
-                <View>
-                    <Text style={styles.total}>
-                        <Text>Total:    </Text>
-                        <Text style={styles.bold}>
-                            <Currency value={order.totalPrice} />
-                        </Text>
+            <Title text="Resumo" />
+            <Text style={styles.orderNumber}>Pedido Nº <Text style={styles.bold}>{orderId}</Text></Text>
+            <ItemList itemList={order?.items} />
+            <View>
+                <Text style={styles.total}>
+                    <Text>Total:    </Text>
+                    <Text style={styles.bold}>
+                        <Currency value={order.totalPrice} />
                     </Text>
-                    {order.wantChange && (
-                        <Text style={styles.troco}>
-                            Trazer troco para <Text style={styles.bold}><Currency value={order.change} /></Text>
-                        </Text>
-                    )}
-                </View>
-            </ScrollView>
+                </Text>
+                {order.wantChange && (
+                    <Text style={styles.troco}>
+                        Trazer troco para <Text style={styles.bold}><Currency value={order.change} /></Text>
+                    </Text>
+                )}
+            </View>
         </BaseScreen>
     )
 }

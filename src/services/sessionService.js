@@ -51,6 +51,7 @@ class SessionService {
 
         this.#data.logged = true
         this.#data.user = user
+        await this.save()
         eventService.notify(LOGIN)
         return true
     }
