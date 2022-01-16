@@ -26,17 +26,17 @@ const styles = StyleSheet.create({
 
 function BaseScreen({ children, hideUser }) {
     const [logged, setLogged] = useState(sessionService.logged)
-    const [user, setUser] = useState(sessionService.user)
+    const [client, setClient] = useState(sessionService.client)
 
     useEffect(() => {
         const loginId = eventService.subscribe(LOGIN, () => {
             setLogged(sessionService.logged)
-            setUser({ ...sessionService.user })
+            setClient({ ...sessionService.client })
         })
 
         const logoutId = eventService.subscribe(LOGOUT, () => {
             setLogged(false)
-            setUser(null)
+            setClient(null)
         })
 
         return () => {
@@ -57,7 +57,7 @@ function BaseScreen({ children, hideUser }) {
                 <ScrollView>
                     {logged && !hideUser && (
                         <View style={styles.top}>
-                            <Text style={styles.topText}>{user?.name}</Text>
+                            <Text style={styles.topText}>{client?.name}</Text>
                         </View>
                     )}
                     <View style={styles.content}>

@@ -3,6 +3,7 @@ import Title from "../../components/Title";
 import { StyleSheet, View, TextInput as OriginalTextInput } from "react-native";
 import { TextInput, Button, Snackbar } from 'react-native-paper';
 import sessionService from "../../services/sessionService";
+import clientService from "../../services/clientService";
 import { useEffect, useState } from "react";
 
 const styles = StyleSheet.create({
@@ -48,13 +49,22 @@ function LoginScreen({ navigation, route }) {
             return
         }
 
-        if (await sessionService.login(data.email, data.password)) {
+        try {
+            const token = await clientService.auth(data.email, data.password)
+            const client = await clientService.me(token)
+            await sessionService.login(client, token)
             if (redirect)
                 navigation.navigate(redirect)
             else
                 navigation.navigate('Payment')
-        } else {
-            setMsg('Dados de acesso inválidos')
+
+        } catch (ex) {
+            if (ex.message.indexOf('401') != -1)
+                setMsg('Dados de acesso inválidos')
+            else {
+                console.log(ex)
+                setMsg('Houve algum erro inesperado ao acessar o servidor')
+            }
         }
     }
 

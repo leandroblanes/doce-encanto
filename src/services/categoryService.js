@@ -1,12 +1,9 @@
-import mock from './data/category'
+import axios from '../util/axios'
 
 class CategoryService {
-    constructor() {
-
-    }
-
     async list() {
-        return mock
+        const res = await axios.get('/category')
+        return res.data
     }
 }
 

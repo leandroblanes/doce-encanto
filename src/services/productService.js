@@ -1,12 +1,9 @@
-import mock from './data/product'
+import axios from '../util/axios'
 
 class ProductService {
-    constructor() {
-
-    }
-
     async list(categoryId) {
-        return mock.filter(el => el.categoryId == categoryId)
+        const res = await axios.get(`/product/${categoryId}`)
+        return res.data
     }
 }
 

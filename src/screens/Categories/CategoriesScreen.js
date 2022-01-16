@@ -5,8 +5,6 @@ import BaseScreen from '../BaseScreen';
 import CategoryList from './CategoryList';
 
 import categoryService from '../../services/categoryService';
-import sessionService from '../../services/sessionService';
-import eventService, { LOAD } from '../../services/eventService';
 
 import logo from '../../img/logo-200.png'
 
@@ -19,7 +17,6 @@ const styles = StyleSheet.create({
 
 function CategoriesScreen({ navigation }) {
     const [categoryList, setCategoryList] = useState(null)
-    const [users, setUsers] = useState(sessionService.users)
 
     useEffect(() => {
         //navigation.navigate('Order', { orderId: 1 })
@@ -27,12 +24,6 @@ function CategoriesScreen({ navigation }) {
         categoryService.list().then(categoryList => {
             setCategoryList(categoryList)
         })
-
-        const loadId = eventService.subscribe(LOAD, () => {
-            setUsers([...sessionService.users])
-        })
-
-        return () => eventService.unsubuscribe(loadId)
     }, [])
 
     return (
@@ -41,9 +32,6 @@ function CategoriesScreen({ navigation }) {
                 <Image source={logo} style={{ width: 150, height: 112.5 }} />
             </View>
             <CategoryList categoryList={categoryList} navigation={navigation} />
-            {/* <Text>
-                {JSON.stringify(users)}
-            </Text> */}
         </BaseScreen>
     )
 }

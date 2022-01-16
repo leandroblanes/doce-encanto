@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 
 import eventService, { LOAD, LOGIN, LOGOUT } from "../../services/eventService"
 import sessionService from "../../services/sessionService"
+import orderService from "../../services/orderService"
 
 import BaseScreen from "../BaseScreen"
 import Title from "../../components/Title"
@@ -9,21 +10,19 @@ import OrderList from "./OrderList"
 
 function OrdersScreen({ navigation }) {
     const [orders, setOrders] = useState(sessionService.orders)
-    const [user, setUser] = useState(sessionService.user)
     const [logged, setLogged] = useState(sessionService.logged)
 
     useEffect(() => {
-        const loadId = eventService.subscribe(LOAD, () => {
-            setOrders([...sessionService.orders])
+        orderService.list(sessionService.token).then(orders => {
+            console.log(orders)
+            setOrders(orders)
         })
 
         const loginId = eventService.subscribe(LOGIN, () => {
-            setUser(sessionService.user)
             setLogged(sessionService.logged)
         })
 
         const logoutId = eventService.subscribe(LOGOUT, () => {
-            setUser(null)
             setLogged(false)
         })
 
@@ -33,19 +32,18 @@ function OrdersScreen({ navigation }) {
             })
 
         return () => {
-            eventService.unsubuscribe(loadId)
             eventService.unsubuscribe(loginId)
             eventService.unsubuscribe(logoutId)
         }
-    })
+    }, [])
 
-    if (!user)
+    if (!logged)
         return null
 
     return (
         <BaseScreen hideUser>
             <Title text="Pedidos" />
-            <OrderList orderList={orders.filter(el => el.userId == user.id)} navigation={navigation} />
+            <OrderList orderList={orders} navigation={navigation} />
         </BaseScreen>
     )
 }

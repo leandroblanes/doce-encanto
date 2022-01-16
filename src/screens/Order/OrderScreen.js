@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react"
 import ItemList from "./ItemList"
 import Currency from "../../components/Currency"
 
+import orderService from "../../services/orderService"
 import sessionService from "../../services/sessionService"
 import colors from "../../util/colors"
 import DateTime from "../../components/DateTime"
@@ -50,7 +51,7 @@ function OrderScreen({ navigation, route }) {
     const [order, setOrder] = useState()
 
     useEffect(() => {
-        sessionService.findOrder(orderId).then(order => {
+        orderService.detail(orderId, sessionService.token).then(order => {
             setOrder(order)
         })
     }, [])

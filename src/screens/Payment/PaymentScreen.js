@@ -6,6 +6,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import colors from "../../util/colors"
 import cartService from "../../services/cartService"
 import eventService, { CART_UPDATED } from "../../services/eventService"
+import orderService from "../../services/orderService"
 import sessionService from "../../services/sessionService"
 import { formatCurrency } from "../../util/util"
 import CurrencyInput from "../../components/CurrencyInput"
@@ -47,7 +48,18 @@ function Payment({ navigation }) {
     }
 
     const save = async () => {
-        const orderId = await sessionService.saveOrder(data.wantChange, data.change)
+        const orderId = await orderService.save({
+            items: cartService.items.map(el => ({
+                productId: el.productId,
+                name: el.product.name,
+                price: el.product.price,
+                quantity: el.quantity
+            })),
+            totalPrice: cartService.totalPrice,
+            wantChange: data.wantChange,
+            change: data.change
+        }, sessionService.token)
+
         navigation.navigate('Order', { orderId })
     }
 

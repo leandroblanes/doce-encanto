@@ -16,17 +16,17 @@ const styles = StyleSheet.create({
 })
 
 function ProfileScreen({ navigation }) {
-    const [user, setUser] = useState(sessionService.user)
+    const [client, setClient] = useState(sessionService.client)
     const [logged, setLogged] = useState(sessionService.logged)
 
     useEffect(() => {
         const loginId = eventService.subscribe(LOGIN, () => {
-            setUser(sessionService.user)
+            setClient(sessionService.client)
             setLogged(sessionService.logged)
         })
 
         const logoutId = eventService.subscribe(LOGOUT, () => {
-            setUser(null)
+            setClient(null)
             setLogged(false)
         })
 
@@ -49,16 +49,16 @@ function ProfileScreen({ navigation }) {
         })
     }
 
-    if (!user)
+    if (!client)
         return null
 
     return (
         <BaseScreen hideUser>
             <Title text="Perfil" />
             <View style={styles.fields}>
-                <Item label="Nome" text={user.name} />
-                <Item label="Email" text={user.email} />
-                <Item label="Telefone" text={user.phone} />
+                <Item label="Nome" text={client.name} />
+                <Item label="Email" text={client.email} />
+                <Item label="Telefone" text={client.phone} />
             </View>
             <Button mode="contained" onPress={sair}>Sair</Button>
         </BaseScreen>

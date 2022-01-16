@@ -5,12 +5,15 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "build": "eas build -p android",
+    "build-apk": "eas build -p android --profile production-apk"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
+    "axios": "^0.24.0",
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
