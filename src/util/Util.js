@@ -13,6 +13,8 @@ export const months = [
     { number: 12, name: "Dezembro", abbreviation: "Dez" }
 ]
 
+export const freight = 5
+
 export function formatCurrency(value) {
     return (value || 0)
         .toFixed(2)

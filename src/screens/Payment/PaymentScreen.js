@@ -8,7 +8,7 @@ import cartService from "../../services/cartService"
 import eventService, { CART_UPDATED } from "../../services/eventService"
 import orderService from "../../services/orderService"
 import sessionService from "../../services/sessionService"
-import { formatCurrency } from "../../util/util"
+import { freight, formatCurrency } from "../../util/util"
 import CurrencyInput from "../../components/CurrencyInput"
 
 const styles = StyleSheet.create({
@@ -55,6 +55,7 @@ function Payment({ navigation }) {
                 price: el.product.price,
                 quantity: el.quantity
             })),
+            freight,
             totalPrice: cartService.totalPrice,
             wantChange: data.wantChange,
             change: data.change

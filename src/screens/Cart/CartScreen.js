@@ -12,8 +12,28 @@ import Currency from "../../components/Currency";
 import colors from "../../util/colors";
 import { Button } from "react-native-paper";
 
+import { freight } from "../../util/util";
+
 const styles = StyleSheet.create({
+    freightContainer: {
+        marginTop: 5,
+        flexDirection: 'row'
+    },
+    freightText: {
+        flex: 1,
+        textAlign: 'right',
+        paddingRight: 10,
+        fontSize: 16,
+        color: colors.marrom
+    },
+    freightValue: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: colors.marrom
+    },
     totalContainer: {
+        marginTop: 5,
+        marginBottom: 5,
         flexDirection: 'row'
     },
     totalText: {
@@ -58,6 +78,10 @@ function CartScreen({ navigation }) {
         <BaseScreen>
             <Title text="Meu Carrinho" />
             <ItemList navigation={navigation} itemList={itemList} />
+            <View style={styles.freightContainer}>
+                <Text style={styles.freightText}>Frete</Text>
+                <Currency style={styles.freightValue} value={freight} />
+            </View>
             <View style={styles.totalContainer}>
                 <Text style={styles.totalText}>Total</Text>
                 <Currency style={styles.totalValue} value={totalPrice} />

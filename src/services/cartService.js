@@ -1,4 +1,5 @@
 import eventService, { CART_UPDATED } from "./eventService"
+import { freight } from "../util/util"
 
 class CartService {
     constructor(eventService) {
@@ -46,7 +47,7 @@ class CartService {
     }
 
     get totalPrice() {
-        return this.items.reduce((acc, el) => acc + (el.quantity * el.product.price), 0)
+        return this.items.reduce((acc, el) => acc + (el.quantity * el.product.price), 0) + freight
     }
 }
 

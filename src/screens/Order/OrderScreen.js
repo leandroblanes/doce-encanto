@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
     right: {
         textAlign: 'right'
     },
+    freight: {
+        textAlign: 'right',
+        fontSize: 18,
+        marginTop: 5,
+        color: colors.marrom
+    },
     total: {
         textAlign: 'right',
         fontSize: 20,
@@ -71,6 +77,12 @@ function OrderScreen({ navigation, route }) {
                     </View>
                     <ItemList itemList={order?.items} />
                     <View>
+                        <Text style={styles.freight}>
+                            <Text>Frete:    </Text>
+                            <Text style={styles.bold}>
+                                <Currency value={order.freight} />
+                            </Text>
+                        </Text>
                         <Text style={styles.total}>
                             <Text>Total:    </Text>
                             <Text style={styles.bold}>

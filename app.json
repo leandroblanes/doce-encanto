@@ -25,7 +25,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "br.com.blanestech.doce_encanto",
-      "versionCode": 4
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/favicon.png"
