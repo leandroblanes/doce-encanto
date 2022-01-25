@@ -21,9 +21,10 @@ function CategoriesScreen({ navigation }) {
     useEffect(() => {
         //navigation.navigate('Order', { orderId: 1 })
 
-        categoryService.list().then(categoryList => {
-            setCategoryList(categoryList)
-        })
+        categoryService
+            .list()
+            .then(setCategoryList)
+            .catch(console.log)
     }, [])
 
     return (

@@ -59,7 +59,7 @@ function OrderScreen({ navigation, route }) {
     useEffect(() => {
         orderService.detail(orderId, sessionService.token).then(order => {
             setOrder(order)
-        })
+        }).catch(console.log)
     }, [])
 
     return (

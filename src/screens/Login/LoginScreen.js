@@ -27,8 +27,10 @@ const styles = StyleSheet.create({
 function LoginScreen({ navigation, route }) {
     const { redirect } = route.params || {}
     const [data, setData] = useState({
-        email: 'john@gmail.com',
-        password: '123'
+        email: '',
+        password: ''
+        // email: 'john@gmail.com',
+        // password: '123'
     })
     const [msg, setMsg] = useState(null)
 
