@@ -14,7 +14,6 @@ function OrdersScreen({ navigation }) {
 
     useEffect(() => {
         orderService.list(sessionService.token).then(orders => {
-            console.log(orders)
             setOrders(orders)
         })
 

@@ -5,6 +5,7 @@ import PhoneInput from "../../components/PhoneInput";
 import NumberInput from "../../components/NumberInput";
 import { TextInput, Button, Snackbar } from 'react-native-paper';
 import sessionService from "../../services/sessionService";
+import clientService from "../../services/clientService";
 import { useState } from "react";
 
 const styles = StyleSheet.create({
@@ -51,8 +52,10 @@ function RegisterScreen({ navigation }) {
         }
 
         try {
-            await sessionService.register(data.email, data.name, data.phone, data.password)
-            await sessionService.login(data.email, data.password)
+            await clientService.create(data)
+            const token = await clientService.auth(data.email, data.password)
+            const client = await clientService.me(token)
+            await sessionService.login(client, token)
             navigation.popToTop()
             navigation.navigate('Payment')
         } catch (message) {

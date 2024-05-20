@@ -12,6 +12,10 @@ class ClientService {
         const res = await axios.get(`/client/me?token=${token}`)
         return res.data
     }
+
+    async create(client) {
+        await axios.post('/client', client)
+    }
 }
 
 const clientService = new ClientService()
